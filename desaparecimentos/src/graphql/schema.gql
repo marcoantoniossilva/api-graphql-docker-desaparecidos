@@ -1,0 +1,42 @@
+type Desaparecimento {
+  cod_desaparecimento: Int
+  cod_pessoa: Int
+  cod_local: Int
+  data_desaparecimento: String
+  informacoes: String
+  fonte: String
+  boletim_ocorrencia: Int
+  ultima_hora_vista: String
+}
+
+input DesaparecimentoInput {
+  cod_desaparecimento: Int
+  cod_pessoa: Int
+  cod_local: Int
+  data_desaparecimento: String
+  informacoes: String
+  fonte: String
+  boletim_ocorrencia: Int
+  ultima_hora_vista: String
+}
+
+input FiltroDesaparecimento {
+  cod_desaparecimento: Int
+  cod_pessoa: Int
+}
+
+type Query {
+  desaparecimentos: [Desaparecimento]
+  desaparecimento(filtro: FiltroDesaparecimento): Desaparecimento
+  isAlive: Boolean
+}
+
+type Mutation {
+  criarDesaparecimento(data: DesaparecimentoInput): Desaparecimento
+  criarDesaparecimentos(data: [DesaparecimentoInput]): [Desaparecimento]
+  atualizarDesaparecimento(
+    cod_desaparecimento: Int!
+    data: DesaparecimentoInput
+  ): Desaparecimento
+  deletarDesaparecimento(cod_desaparecimento: Int!): Boolean
+}

@@ -1,0 +1,26 @@
+type Local {
+  cod_local: Int
+  cod_bairro: Int
+  latitude: String
+  longitude: String
+}
+
+type Query {
+  locais: [Local]
+  local(cod_local: Int): Local
+  isAlive: Boolean
+}
+
+input LocalInput {
+  cod_local: Int
+  cod_bairro: Int
+  latitude: String
+  longitude: String
+}
+
+type Mutation {
+  criarLocal(data: LocalInput): Local
+  criarLocais(data: [LocalInput]): [Local]
+  atualizarLocal(cod_local: Int!, data: LocalInput): Local
+  deletarLocal(cod_local: Int!): Boolean
+}

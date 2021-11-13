@@ -1,0 +1,139 @@
+version: "3"
+services:
+  postgres:
+    container_name: postgres
+    build: ./database/
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=api_desaparecidos
+      - POSTGRES_USER=root
+    ports:
+      - "5432:5432"
+    network_mode: bridge
+
+  ufs:
+    image: graphql-desaparecidos
+    build: ./ufs/
+    hostname: ufs
+    command: npm start
+    network_mode: bridge
+    volumes:
+      - "./ufs/:/home/node/app/"
+      - "/home/node/app/node_modules"
+    ports:
+      - "4001:4001"
+    expose:
+      - "4001"
+    environment:
+      DB_HOST: postgres
+      GRAPHQL_PORT: 4001
+    links:
+      - "postgres"
+    depends_on:
+      - "postgres"
+
+  cidades:
+    image: graphql-desaparecidos
+    build: ./cidades/
+    hostname: cidades
+    command: npm start
+    network_mode: bridge
+    volumes:
+      - "./cidades/:/home/node/app/"
+      - "/home/node/app/node_modules"
+    ports:
+      - "4002:4002"
+    expose:
+      - "4002"
+    environment:
+      DB_HOST: postgres
+      GRAPHQL_PORT: 4002
+    links:
+      - "postgres"
+    depends_on:
+      - "postgres"
+
+  bairros:
+    image: graphql-desaparecidos
+    build: ./bairros/
+    hostname: bairros
+    command: npm start
+    network_mode: bridge
+    volumes:
+      - "./bairros/:/home/node/app/"
+      - "/home/node/app/node_modules"
+    ports:
+      - "4003:4003"
+    expose:
+      - "4003"
+    environment:
+      DB_HOST: postgres
+      GRAPHQL_PORT: 4003
+    links:
+      - "postgres"
+    depends_on:
+      - "postgres"
+
+  locais:
+    image: graphql-desaparecidos
+    build: ./locais/
+    hostname: locais
+    command: npm start
+    network_mode: bridge
+    volumes:
+      - "./locais/:/home/node/app/"
+      - "/home/node/app/node_modules"
+    ports:
+      - "4004:4004"
+    expose:
+      - "4004"
+    environment:
+      DB_HOST: postgres
+      GRAPHQL_PORT: 4004
+    links:
+      - "postgres"
+    depends_on:
+      - "postgres"
+
+  pessoas:
+    image: graphql-desaparecidos
+    build: ./pessoas/
+    hostname: pessoas
+    command: npm start
+    network_mode: bridge
+    volumes:
+      - "./pessoas/:/home/node/app/"
+      - "/home/node/app/node_modules"
+    ports:
+      - "4005:4005"
+    expose:
+      - "4005"
+    environment:
+      DB_HOST: postgres
+      GRAPHQL_PORT: 4005
+    links:
+      - "postgres"
+    depends_on:
+      - "postgres"
+
+  desaparecimentos:
+    image: graphql-desaparecidos
+    build: ./desaparecimentos/
+    hostname: desaparecimentos
+    command: npm start
+    network_mode: bridge
+    volumes:
+      - "./desaparecimentos/:/home/node/app/"
+      - "/home/node/app/node_modules"
+    ports:
+      - "4006:4006"
+    expose:
+      - "4006"
+    environment:
+      DB_HOST: postgres
+      GRAPHQL_PORT: 4006
+    links:
+      - "postgres"
+    depends_on:
+      - "postgres"

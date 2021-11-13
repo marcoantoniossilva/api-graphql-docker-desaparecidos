@@ -1,0 +1,27 @@
+type Uf {
+  cod_uf: Int
+  sigla: String
+}
+
+type Query {
+  ufs: [Uf]
+  uf(cod_uf: Int): Uf
+  isAlive: Boolean
+}
+
+input FiltroInput {
+  cod_uf: Int
+  sigla_uf: String
+}
+
+input UfInput {
+  cod_uf: Int
+  sigla: String
+}
+
+type Mutation {
+  criarUf(sigla: String): Uf
+  criarUfs(data: [UfInput]): [Uf]
+  atualizarUf(cod_uf: Int!, nova_sigla: String): Uf
+  deletarUf(filtro: FiltroInput): Boolean
+}

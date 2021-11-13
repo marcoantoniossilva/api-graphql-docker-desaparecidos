@@ -1,0 +1,24 @@
+type Cidade {
+  cod_cidade: Int
+  cod_uf: Int
+  nome_cidade: String
+}
+
+type Query {
+  cidades: [Cidade]
+  cidade(cod_cidade: Int): Cidade
+  isAlive: Boolean
+}
+
+input CidadeInput {
+  cod_cidade: Int
+  cod_uf: Int
+  nome_cidade: String
+}
+
+type Mutation {
+  criarCidade(data: CidadeInput): Cidade
+  criarCidades(data: [CidadeInput]): [Cidade]
+  atualizarCidade(cod_cidade: Int!, data: CidadeInput): Cidade
+  deletarCidade(cod_cidade: Int!): Boolean
+}
