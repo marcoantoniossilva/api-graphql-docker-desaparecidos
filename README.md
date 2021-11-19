@@ -1,6 +1,6 @@
 # api-graph-docker-desaparecidos
 
-Api de microsserviços [GraphQL](https://graphql.org/) sobre desaparecimentos desenvolvida em [javascript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript) com uso do [Apollo Server](https://www.apollographql.com/docs/apollo-server/), [Mysql](https://www.mysql.com/) e [Knex](https://knexjs.org/) utilizando conteinerização [Docker](https://github.com/docker).
+Api de microsserviços [GraphQL](https://graphql.org/) sobre desaparecimentos desenvolvida em [javascript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript) com uso do [Apollo Server](https://www.apollographql.com/docs/apollo-server/), [PostgreSQL](https://www.postgresql.org/) e [Knex](https://knexjs.org/) utilizando conteinerização [Docker](https://github.com/docker).
 
 <br/>
 
@@ -50,3 +50,38 @@ O resultado deve ser como o abaixo:
 ```
 
 Pronto! API GraphQL de desaparecimentos configurada com êxito!
+
+## 4 - Testar operações dos serviços (Opcional)
+
+### Requisitos
+
+- [Node](https://github.com/nodejs/node)
+- [Npm](https://github.com/npm/npm) ou [Yarn](https://github.com/yarnpkg/yarn)
+
+<br>
+
+Se desejar realizar um teste das operações de criação e listagem de todas de todos os serviços, basta navegar até a pasta [testeAPI](testeAPI/) e instalar as dependências:
+
+### 4.1 - Instalar as dependências
+
+Na pasta do projeto execute (npm):
+
+```bash
+npm install
+```
+
+ou (yarn)
+
+```bash
+yarn
+```
+
+<br/>
+
+### 4.2 - Executar o teste da API
+
+```bash
+node index.js
+```
+
+Então, deverá ser exibido na saída do console as listagens de cada entidade antes e depois da criação.
