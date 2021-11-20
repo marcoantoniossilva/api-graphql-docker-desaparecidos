@@ -4,6 +4,11 @@ Api de microsserviços [GraphQL](https://graphql.org/) sobre desaparecimentos de
 
 <br/>
 
+## Vídeo de demonstração
+Clique [aqui](https://youtu.be/WL6WSkd9144) para ser direcionado à um vídeo de demonstração no Youtube.
+
+<br/>
+
 ## Requisitos
 
 - [Docker](https://docs.docker.com/)
