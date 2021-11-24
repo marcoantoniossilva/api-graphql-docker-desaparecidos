@@ -27,6 +27,7 @@ input FiltroDesaparecimento {
 
 type Query {
   desaparecimentos: [Desaparecimento]
+  desaparecimentosPorLocal(cod_local: Int): [Desaparecimento]
   desaparecimento(filtro: FiltroDesaparecimento): Desaparecimento
   isAlive: Boolean
 }

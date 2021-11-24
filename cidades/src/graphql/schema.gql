@@ -6,6 +6,7 @@ type Cidade {
 
 type Query {
   cidades: [Cidade]
+  cidadesPorUf(cod_uf: Int): [Cidade]
   cidade(cod_cidade: Int): Cidade
   isAlive: Boolean
 }

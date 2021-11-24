@@ -14,12 +14,12 @@ module.exports = {
       await db("ufs").insert(data).returning("*"),
     atualizarUf: async (_, { cod_uf, data }) =>
       await db("ufs").where({ cod_uf }).update(data),
-    deletarUf: async (_, { filtro }) => {
-      if (filtro.cod_uf) {
-        return await db("ufs").where({ cod_uf: filtro.cod_uf }).delete();
+    deletarUf: async (_, { filtro: { cod_uf, sigla } }) => {
+      if (cod_uf) {
+        return await db("ufs").where({ cod_uf }).delete();
       }
-      if (filtro.sigla_uf) {
-        return await db("ufs").where({ sigla_uf: filtro.sigla_uf }).delete();
+      if (sigla) {
+        return await db("ufs").where({ sigla }).delete();
       }
       throw new Error("Favor passar um parâmetro!");
     },

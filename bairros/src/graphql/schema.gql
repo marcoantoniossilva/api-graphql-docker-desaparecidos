@@ -6,6 +6,7 @@ type Bairro {
 
 type Query {
   bairros: [Bairro]
+  bairrosPorCidade(cod_cidade: Int!): [Bairro]
   bairro(cod_bairro: Int): Bairro
   isAlive: Boolean
 }

@@ -4,6 +4,17 @@ const { serviceIsAlive } = require("../status/index.js");
 module.exports = {
   Query: {
     pessoas: async () => await db("pessoas"),
+    pessoaPorDesaparecimento: async (_, { cod_desaparecimento }) =>
+      await db("pessoas")
+        .join(
+          "desaparecimentos",
+          "pessoas.cod_pessoa",
+          "=",
+          "desaparecimentos.cod_pessoa"
+        )
+        .where({ cod_desaparecimento })
+        .select("pessoas.*")
+        .first(),
     pessoa: async (_, { cod_pessoa }) =>
       await db("pessoas").where({ cod_pessoa }).first(),
     isAlive: () => serviceIsAlive(),

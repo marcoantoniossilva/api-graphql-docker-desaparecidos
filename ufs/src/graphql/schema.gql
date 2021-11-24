@@ -11,7 +11,7 @@ type Query {
 
 input FiltroInput {
   cod_uf: Int
-  sigla_uf: String
+  sigla: String
 }
 
 input UfInput {

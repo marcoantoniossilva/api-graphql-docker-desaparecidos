@@ -4,6 +4,8 @@ const { serviceIsAlive } = require("../status/index.js");
 module.exports = {
   Query: {
     desaparecimentos: async () => await db("desaparecimentos"),
+    desaparecimentosPorLocal: async (_, { cod_local }) =>
+      await db("desaparecimentos").where({ cod_local }),
     desaparecimento: async (_, { filtro }) => {
       if (filtro.cod_desaparecimento) {
         return await db("desaparecimentos")

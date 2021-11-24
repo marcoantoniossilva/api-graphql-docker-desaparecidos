@@ -32,6 +32,7 @@ input PessoaInput {
 
 type Query {
   pessoas: [Pessoa]
+  pessoaPorDesaparecimento(cod_desaparecimento: Int!): Pessoa
   pessoa(cod_pessoa: Int): Pessoa
   isAlive: Boolean
 }

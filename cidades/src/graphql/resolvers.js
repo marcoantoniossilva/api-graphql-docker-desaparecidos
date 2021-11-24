@@ -4,6 +4,9 @@ const { serviceIsAlive } = require("../status/index.js");
 module.exports = {
   Query: {
     cidades: async () => await db("cidades"),
+    cidadesPorUf: async (_, { cod_uf }) =>
+      await db("cidades").where({ cod_uf }),
+    isAlive: () => serviceIsAlive(),
     cidade: async (_, { cod_cidade }) =>
       await db("cidades").where({ cod_cidade }).first(),
     isAlive: () => serviceIsAlive(),
