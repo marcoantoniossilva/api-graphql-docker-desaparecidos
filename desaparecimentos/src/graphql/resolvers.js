@@ -6,6 +6,20 @@ module.exports = {
     desaparecimentos: async () => await db("desaparecimentos"),
     desaparecimentosPorLocal: async (_, { cod_local }) =>
       await db("desaparecimentos").where({ cod_local }),
+    desaparecimentosCriancaAdulto: async () => {
+      const {
+        rows: [result],
+      } = await db.raw(
+        `select  count(*) as criancas, (select  count(*)
+        from desaparecimentos d
+        join pessoas p on d.cod_pessoa = p.cod_pessoa
+        where p.data_nascimento < now()- INTERVAL '12 year') as adultos
+        from desaparecimentos d
+        join pessoas p on d.cod_pessoa = p.cod_pessoa
+        where p.data_nascimento > now()- INTERVAL '12 year';`
+      );
+      return result;
+    },
     desaparecimento: async (_, { filtro }) => {
       if (filtro.cod_desaparecimento) {
         return await db("desaparecimentos")

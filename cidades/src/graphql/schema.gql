@@ -8,7 +8,13 @@ type Query {
   cidades: [Cidade]
   cidadesPorUf(cod_uf: Int): [Cidade]
   cidade(cod_cidade: Int): Cidade
+  cidadeComMaisOcorrencias: cidadeComMaisOcorrenciasOutput
   isAlive: Boolean
+}
+
+type cidadeComMaisOcorrenciasOutput {
+  nome: String
+  total: Int
 }
 
 input CidadeInput {

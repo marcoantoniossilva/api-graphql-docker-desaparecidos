@@ -3,9 +3,15 @@ type Uf {
   sigla: String
 }
 
+type ufComMaisOcorrenciasOutput {
+  nome: String
+  total: Int
+}
+
 type Query {
   ufs: [Uf]
   uf(cod_uf: Int): Uf
+  ufComMaisOcorrencias: ufComMaisOcorrenciasOutput
   isAlive: Boolean
 }
 

@@ -121,7 +121,7 @@ async function criacao() {
 
   const id_pessoa1 = await criarPessoa({
     nome: "José Souza de Oliveira",
-    data_nascimento: "02/12/1985",
+    data_nascimento: "02/12/2020",
     imagem: "http://www.avatar.com.br/jose",
     sexo: "M",
     cor_olhos: "Castanho",
@@ -153,7 +153,7 @@ async function criacao() {
 
   const id_pessoa3 = await criarPessoa({
     nome: "Carlos André Neto",
-    data_nascimento: "02/12/1985",
+    data_nascimento: "02/12/2010",
     imagem: "http://www.avatar.com.br/jose",
     sexo: "M",
     cor_olhos: "Castanho",
@@ -334,6 +334,17 @@ async function criacao() {
     ultima_hora_vista: "19:00:00",
   }).then((retorno) => retorno);
   console.log("Desaparecimento criado com código:", id_desaparecimento8);
+
+  const id_desaparecimento9 = await criarDesaparecimento({
+    cod_pessoa: id_pessoa8,
+    cod_local: id_local5,
+    data_desaparecimento: "14/07/2021",
+    informacoes: "Saiu para comprar cigarro",
+    fonte: "Mãe",
+    boletim_ocorrencia: 1,
+    ultima_hora_vista: "19:00:00",
+  }).then((retorno) => retorno);
+  console.log("Desaparecimento criado com código:", id_desaparecimento9);
 }
 
 async function listagem() {
