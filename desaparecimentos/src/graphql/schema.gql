@@ -25,6 +25,10 @@ input FiltroDesaparecimento {
   cod_pessoa: Int
 }
 
+type DesaparecimentosTotaisOutput {
+  total: Int
+}
+
 type desaparecimentosCriancaAdultoOutput {
   criancas: Int
   adultos: Int
@@ -35,6 +39,7 @@ type Query {
   desaparecimentosPorLocal(cod_local: Int): [Desaparecimento]
   desaparecimento(filtro: FiltroDesaparecimento): Desaparecimento
   desaparecimentosCriancaAdulto: desaparecimentosCriancaAdultoOutput
+  desaparecimentosTotais: DesaparecimentosTotaisOutput
   isAlive: Boolean
 }
 

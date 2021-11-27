@@ -33,6 +33,10 @@ module.exports = {
       }
       throw new Error("Favor passar um parâmetro!");
     },
+    desaparecimentosTotais: async () =>
+      await db("desaparecimentos")
+        .count("cod_desaparecimento as total")
+        .first(),
     isAlive: () => serviceIsAlive(),
   },
   Mutation: {
