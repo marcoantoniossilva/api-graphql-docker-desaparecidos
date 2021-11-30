@@ -4,6 +4,7 @@ const PORTA_API = 4006;
 
 const MUTATION = `
 mutation (
+  $cod_desaparecimento: Int,
   $cod_pessoa: Int!,
   $cod_local: Int!,
   $data_desaparecimento: String!,
@@ -13,6 +14,7 @@ mutation (
   $ultima_hora_vista:String!,
 ){
   criarDesaparecimento(data:{
+    cod_desaparecimento: $cod_desaparecimento,
     cod_pessoa: $cod_pessoa,
     cod_local: $cod_local,
     data_desaparecimento: $data_desaparecimento,
@@ -60,6 +62,7 @@ const QUERY_TOTAL_DE_DESAPARECIMENTOS = `
 
 const VARIABLES = `
   {
+    "cod_desaparecimento": COD_DESAPARECIMENTO,
     "cod_pessoa": COD_PESSOA_DES,
     "cod_local": COD_LOCAL_DES,
     "data_desaparecimento": "DATA_DESAPARECIMENTO_DES",
@@ -72,6 +75,7 @@ const VARIABLES = `
 
 const criarDesaparecimento = async (dados_desaparecimento) => {
   const {
+    cod_desaparecimento,
     cod_pessoa,
     cod_local,
     data_desaparecimento,
@@ -85,6 +89,7 @@ const criarDesaparecimento = async (dados_desaparecimento) => {
     "COD_PESSOA_DES",
     cod_pessoa
   )
+    .replace("COD_DESAPARECIMENTO", cod_desaparecimento)
     .replace("COD_LOCAL_DES", cod_local)
     .replace("DATA_DESAPARECIMENTO_DES", data_desaparecimento)
     .replace("INFORMACOES_DES", informacoes)

@@ -4,6 +4,7 @@ const { listarCidadeComMaisOcorrencias } = require("./cidade");
 const {
   listarProporcaoDeOcorrencias,
   listarTotalDeOcorrencias,
+  criarDesaparecimento,
 } = require("./desaparecimento");
 
 async function criacao() {
