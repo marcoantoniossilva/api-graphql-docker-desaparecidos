@@ -41,6 +41,23 @@ const QUERY = `
   }
 `;
 
+const QUERY_PROPORCAO_DE_DESAPARECIMENTOS = `
+  query {
+    desaparecimentosCriancaAdulto{
+      criancas
+      adultos
+    }
+  }
+`;
+
+const QUERY_TOTAL_DE_DESAPARECIMENTOS = `
+  query {
+    desaparecimentosTotais{
+      total
+    }
+  }
+`;
+
 const VARIABLES = `
   {
     "cod_pessoa": COD_PESSOA_DES,
@@ -94,7 +111,38 @@ const listarDesaparecimentos = async () => {
   }
 };
 
+const listarTotalDeOcorrencias = async () => {
+  if (await api.verificarAPI(PORTA_API)) {
+    await api
+      .consumirAPI(QUERY_TOTAL_DE_DESAPARECIMENTOS, "{}", PORTA_API)
+      .then((retorno) => {
+        const { total } = retorno.desaparecimentosTotais;
+        console.log("TOTAL DE OCORRÊNCIAS");
+        console.log("QUANTIDADE:", total);
+      });
+  } else {
+    console.error("API de desaparecimentos não está no ar!");
+  }
+};
+
+const listarProporcaoDeOcorrencias = async () => {
+  if (await api.verificarAPI(PORTA_API)) {
+    await api
+      .consumirAPI(QUERY_PROPORCAO_DE_DESAPARECIMENTOS, "{}", PORTA_API)
+      .then((retorno) => {
+        const { criancas, adultos } = retorno.desaparecimentosCriancaAdulto;
+        console.log("PROPORÇÃO DE OCORRÊNCIAS");
+        console.log("QUANTIDADE DE CRIANÇAS:", criancas);
+        console.log("QUANTIDADE DE ADULTOS:", adultos);
+      });
+  } else {
+    console.error("API de desaparecimentos não está no ar!");
+  }
+};
+
 module.exports = {
   criarDesaparecimento,
   listarDesaparecimentos,
+  listarTotalDeOcorrencias,
+  listarProporcaoDeOcorrencias,
 };

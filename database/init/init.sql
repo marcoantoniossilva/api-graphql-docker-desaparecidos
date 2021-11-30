@@ -76,7 +76,7 @@ CREATE TABLE desaparecimentos (
   informacoes text,
   fonte varchar(255) DEFAULT NULL,
   boletim_ocorrencia smallint DEFAULT NULL,
-  ultima_hora_vista time(0) DEFAULT NULL,
+  ultima_hora_vista date DEFAULT NULL,
   PRIMARY KEY (cod_desaparecimento),
   CONSTRAINT desaparecimentos_codlocal_foreign FOREIGN KEY (cod_local) REFERENCES locais (cod_local),
   CONSTRAINT desaparecimentos_codpessoa_foreign FOREIGN KEY (cod_pessoa) REFERENCES pessoas (cod_pessoa)

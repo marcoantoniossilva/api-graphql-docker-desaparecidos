@@ -19,6 +19,15 @@ const QUERY = `
   }
 `;
 
+const QUERY_UF_COM_MAIS_OCORRENCIAS = `
+  query {
+    ufComMaisOcorrencias{
+      nome
+      total
+  }
+  }
+`;
+
 const VARIABLES = `
   {
     "sigla": "SIGLA_UF"
@@ -47,7 +56,26 @@ const listarUfs = async () => {
   }
 };
 
+const listarUfComMaisOcorrencias = async () => {
+  if (await api.verificarAPI(PORTA_API)) {
+    await api
+      .consumirAPI(QUERY_UF_COM_MAIS_OCORRENCIAS, "{}", PORTA_API)
+      .then((retorno) => {
+        const { nome, total } = retorno.ufComMaisOcorrencias || {
+          nome: "Nenhuma",
+          total: 0,
+        };
+        console.log("UF COM MAIS OCORRÊNCIAS");
+        console.log("NOME:", nome);
+        console.log("QUANTIDADE:", total);
+      });
+  } else {
+    console.error("API de ufs não está no ar!");
+  }
+};
+
 module.exports = {
   criarUf,
   listarUfs,
+  listarUfComMaisOcorrencias,
 };

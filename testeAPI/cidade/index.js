@@ -23,6 +23,15 @@ const QUERY = `
   }
 `;
 
+const QUERY_CIDADE_COM_MAIS_OCORRENCIAS = `
+  query {
+    cidadeComMaisOcorrencias{
+      nome
+      total
+    }
+  }
+`;
+
 const VARIABLES = `
   {
     "cod_uf": COD_UF,
@@ -55,7 +64,26 @@ const listarCidades = async () => {
   }
 };
 
+const listarCidadeComMaisOcorrencias = async () => {
+  if (await api.verificarAPI(PORTA_API)) {
+    await api
+      .consumirAPI(QUERY_CIDADE_COM_MAIS_OCORRENCIAS, "{}", PORTA_API)
+      .then((retorno) => {
+        const { nome, total } = retorno.cidadeComMaisOcorrencias || {
+          nome: "Nenhuma",
+          total: 0,
+        };
+        console.log("CIDADE COM MAIS OCORRÊNCIAS");
+        console.log("NOME:", nome);
+        console.log("QUANTIDADE:", total);
+      });
+  } else {
+    console.error("API de cidades não está no ar!");
+  }
+};
+
 module.exports = {
   criarCidade,
   listarCidades,
+  listarCidadeComMaisOcorrencias,
 };
